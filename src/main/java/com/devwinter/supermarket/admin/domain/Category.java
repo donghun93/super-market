@@ -1,6 +1,10 @@
 package com.devwinter.supermarket.admin.domain;
 
 import com.devwinter.supermarket.common.domain.BaseEntity;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,7 +12,9 @@ import java.util.List;
 
 import static javax.persistence.FetchType.LAZY;
 
+@Getter
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Category extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +29,14 @@ public class Category extends BaseEntity {
 
     @OneToMany(mappedBy = "parent")
     private List<Category> childs = new ArrayList<>();
+
+    @Builder
+    private Category(String name) {
+        this.name = name;
+    }
+
+    public void addCategory(Category child) {
+        child.parent = this;
+        this.childs.add(child);
+    }
 }
