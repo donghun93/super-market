@@ -23,6 +23,8 @@ public class Category extends BaseEntity {
 
     private String name;
 
+    private int orderNo;
+
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent;
@@ -31,8 +33,10 @@ public class Category extends BaseEntity {
     private List<Category> childs = new ArrayList<>();
 
     @Builder
-    private Category(String name) {
+    private Category(String name, int orderNo, Category parent) {
         this.name = name;
+        this.orderNo = orderNo;
+        this.parent = parent;
     }
 
     public void addCategory(Category child) {
