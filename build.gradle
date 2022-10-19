@@ -35,6 +35,9 @@ dependencies {
     implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
+    // p6spy
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.1'
+
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'mysql:mysql-connector-java'
