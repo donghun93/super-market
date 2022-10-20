@@ -5,11 +5,12 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       use-new-id-generator-mappings: true
     properties:
       hibernate:
         format_sql: true
+        default_batch_fetch_size: 100
     show-sql: true
 
   datasource:
@@ -17,6 +18,11 @@ spring:
     username: supermarket_manager
     password: manager001
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
 
 ---
 spring:
