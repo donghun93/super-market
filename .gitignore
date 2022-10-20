@@ -229,3 +229,5 @@ gradle-app.setting
 
 ### VS Code ###
 .vscode/
+
+/src/main/resources
