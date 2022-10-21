@@ -1,4 +1,4 @@
-package com.devwinter.supermarket.member.domain;
+package com.devwinter.supermarket.member.domain.value;
 
 import lombok.AccessLevel;
 import lombok.Builder;

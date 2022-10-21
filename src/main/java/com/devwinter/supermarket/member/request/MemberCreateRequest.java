@@ -1,11 +1,13 @@
 package com.devwinter.supermarket.member.request;
 
 import com.devwinter.supermarket.member.domain.*;
+import com.devwinter.supermarket.member.domain.type.Gender;
+import com.devwinter.supermarket.member.domain.value.Address;
+import com.devwinter.supermarket.member.domain.value.Birth;
+import com.devwinter.supermarket.member.domain.value.PersonalInformation;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.Email;
 
 @Getter
 @NoArgsConstructor

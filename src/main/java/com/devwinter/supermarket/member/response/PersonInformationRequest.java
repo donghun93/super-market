@@ -1,6 +1,6 @@
 package com.devwinter.supermarket.member.response;
 
-import com.devwinter.supermarket.member.domain.Gender;
+import com.devwinter.supermarket.member.domain.type.Gender;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

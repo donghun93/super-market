@@ -1,6 +1,6 @@
 package com.devwinter.supermarket.member.response;
 
-import com.devwinter.supermarket.member.domain.Address;
+import com.devwinter.supermarket.member.domain.value.Address;
 import com.devwinter.supermarket.member.domain.Member;
 import lombok.Builder;
 import lombok.Getter;
