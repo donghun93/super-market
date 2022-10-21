@@ -1,6 +1,8 @@
 package com.devwinter.supermarket.member.domain;
 
 import com.devwinter.supermarket.common.domain.BaseTimeEntity;
+import com.devwinter.supermarket.member.domain.value.Address;
+import com.devwinter.supermarket.member.domain.value.PersonalInformation;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,6 +18,7 @@ import java.time.LocalDateTime;
 public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
     private Long id;
 
     private String email;
