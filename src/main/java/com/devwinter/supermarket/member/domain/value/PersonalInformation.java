@@ -1,9 +1,12 @@
-package com.devwinter.supermarket.member.domain;
+package com.devwinter.supermarket.member.domain.value;
 
+import com.devwinter.supermarket.member.domain.type.Gender;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -11,6 +14,7 @@ public class PersonalInformation {
 
     private Gender gender;
     private Birth birth;
+    @Column(name = "phone_number")
     private String phoneNumber;
     private String name;
 
