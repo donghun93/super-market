@@ -1,6 +1,9 @@
 package com.devwinter.supermarket.member.service;
 
 import com.devwinter.supermarket.member.domain.*;
+import com.devwinter.supermarket.member.domain.value.Address;
+import com.devwinter.supermarket.member.domain.value.Birth;
+import com.devwinter.supermarket.member.domain.value.PersonalInformation;
 import com.devwinter.supermarket.member.exception.MemberException;
 import com.devwinter.supermarket.member.repository.MemberRepository;
 import com.devwinter.supermarket.member.request.MemberCreateRequest;
@@ -8,6 +11,7 @@ import com.devwinter.supermarket.member.response.MemberDetailResponse;
 import com.devwinter.supermarket.member.response.MemberListResponse;
 import com.devwinter.supermarket.member.response.PersonInformationRequest;
 import com.devwinter.supermarket.member.service.impl.MemberServiceImpl;
+import com.devwinter.supermarket.member.domain.type.Gender;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

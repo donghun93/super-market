@@ -1,6 +1,7 @@
 package com.devwinter.supermarket.admin.repository;
 
 import com.devwinter.supermarket.admin.domain.Category;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @ActiveProfiles({"test"})
 @Transactional
+@Disabled
 class CategoryRepositoryTest {
 
     @Autowired
