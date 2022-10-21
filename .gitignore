@@ -231,3 +231,6 @@ gradle-app.setting
 .vscode/
 
 /src/main/resources
+
+### CYC ###
+application.yml
