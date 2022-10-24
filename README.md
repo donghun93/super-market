@@ -1,5 +1,5 @@
 # Super Market
-
+![test coverage](.github/badges/jacoco.svg)
 
 ##  :gift: 소개
 사고 팔고! 슈퍼마켓 서비스
