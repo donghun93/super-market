@@ -8,7 +8,6 @@ import com.devwinter.supermarket.member.exception.RegionException;
 import com.devwinter.supermarket.member.repository.MemberRepository;
 import com.devwinter.supermarket.member.repository.RegionRepository;
 import com.devwinter.supermarket.member.request.RegionCreateRequest;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +24,7 @@ import java.util.Optional;
 
 import static com.devwinter.supermarket.member.exception.RegionErrorCode.REGION_MAX_OVER;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;

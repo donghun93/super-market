@@ -1,6 +1,7 @@
 package com.devwinter.supermarket.member.domain;
 
 import com.devwinter.supermarket.common.domain.BaseTimeEntity;
+import com.devwinter.supermarket.member.domain.type.MemberRole;
 import com.devwinter.supermarket.member.domain.value.Address;
 import com.devwinter.supermarket.member.domain.value.PersonalInformation;
 import lombok.AccessLevel;
@@ -10,6 +11,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+
+import static com.devwinter.supermarket.member.domain.type.MemberRole.NORMAL_MEMBER;
 
 @Getter
 @Entity
@@ -36,6 +39,9 @@ public class Member extends BaseTimeEntity {
     @Embedded
     private Address address;
 
+    @Enumerated(EnumType.STRING)
+    private MemberRole memberRole;
+
     @Builder
     private Member(String email, String pass, PersonalInformation personalInformation, Address address) {
         this.email = email;
@@ -45,6 +51,7 @@ public class Member extends BaseTimeEntity {
         this.suspensionYn = false;
         this.mannerPoint = 0;
         this.useYn = true;
+        this.memberRole = NORMAL_MEMBER;
     }
 
     public void resign() {
@@ -52,5 +59,9 @@ public class Member extends BaseTimeEntity {
             this.useYn = false;
             this.resignDate = LocalDateTime.now();
         }
+    }
+
+    public void changeMemberRole(MemberRole memberRole) {
+        this.memberRole = memberRole;
     }
 }
