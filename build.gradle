@@ -34,6 +34,15 @@ dependencies {
     implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
+    implementation('com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.1')
+
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
     // querydsl
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
     implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
@@ -42,13 +51,12 @@ dependencies {
     // p6spy
     implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.1'
 
-
-
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {
