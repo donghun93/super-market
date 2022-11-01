@@ -1,19 +1,16 @@
 package com.devwinter.supermarket.member.command.domain;
 
-import com.devwinter.supermarket.common.domain.BaseTimeEntity;
-import com.devwinter.supermarket.member.command.application.exception.MemberException;
+import com.devwinter.supermarket.member.command.exception.MemberException;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import static com.devwinter.supermarket.member.command.application.exception.MemberErrorCode.MEMBER_ALREADY_REGION_NAME;
-import static com.devwinter.supermarket.member.command.application.exception.MemberErrorCode.MEMBER_ALREADY_REGION_REGISTER;
+import static com.devwinter.supermarket.member.command.exception.MemberErrorCode.MEMBER_ALREADY_REGION_NAME;
+import static com.devwinter.supermarket.member.command.exception.MemberErrorCode.MEMBER_ALREADY_REGION_REGISTER;
 
 @Getter
 @Embeddable

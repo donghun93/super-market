@@ -1,7 +1,7 @@
 package com.devwinter.supermarket.member.command.domain;
 
 import com.devwinter.supermarket.common.domain.BaseEntity;
-import com.devwinter.supermarket.member.command.application.exception.MemberException;
+import com.devwinter.supermarket.member.command.exception.MemberException;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static com.devwinter.supermarket.member.command.application.exception.MemberErrorCode.*;
+import static com.devwinter.supermarket.member.command.exception.MemberErrorCode.*;
 
 @Getter
 @Entity
@@ -38,7 +38,7 @@ public class Member extends BaseEntity {
     @Embedded
     private MannerPoint mannerPoint;
 
-    private boolean deleteYn;
+    private Boolean deleteYn;
     private LocalDateTime deleteDate;
 
     @ElementCollection(fetch = FetchType.LAZY)

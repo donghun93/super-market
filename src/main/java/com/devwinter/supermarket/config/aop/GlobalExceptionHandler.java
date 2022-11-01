@@ -1,6 +1,6 @@
 package com.devwinter.supermarket.config.aop;
 
-import com.devwinter.supermarket.common.exception.SuperMarketException;
+import com.devwinter.supermarket.common.SuperMarketException;
 import com.devwinter.supermarket.common.response.ErrorArgumentResponse;
 import com.devwinter.supermarket.common.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;

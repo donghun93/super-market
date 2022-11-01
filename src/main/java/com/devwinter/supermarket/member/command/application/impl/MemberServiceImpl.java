@@ -1,20 +1,19 @@
 package com.devwinter.supermarket.member.command.application.impl;
 
 import com.devwinter.supermarket.member.command.application.MemberService;
-import com.devwinter.supermarket.member.command.application.exception.MemberException;
+import com.devwinter.supermarket.member.command.exception.MemberException;
 import com.devwinter.supermarket.member.command.application.request.MemberCreate;
 import com.devwinter.supermarket.member.command.application.request.RegionCreate;
 import com.devwinter.supermarket.member.command.domain.Email;
 import com.devwinter.supermarket.member.command.domain.Member;
-import com.devwinter.supermarket.member.command.domain.MemberId;
 import com.devwinter.supermarket.member.command.domain.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.devwinter.supermarket.member.command.application.exception.MemberErrorCode.MEMBER_DUPLICATE_ERROR;
-import static com.devwinter.supermarket.member.command.application.exception.MemberErrorCode.MEMBER_NOT_FOUND;
+import static com.devwinter.supermarket.member.command.exception.MemberErrorCode.MEMBER_DUPLICATE_ERROR;
+import static com.devwinter.supermarket.member.command.exception.MemberErrorCode.MEMBER_NOT_FOUND;
 
 @Service
 @Transactional(readOnly = true)

@@ -1,4 +1,4 @@
-package com.devwinter.supermarket.common.exception;
+package com.devwinter.supermarket.common;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
