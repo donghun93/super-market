@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @Transactional
-@ActiveProfiles({"testMemoryDB"})
+@ActiveProfiles({"test"})
 public class MemberServiceIntegratedTest {
 
     @Autowired

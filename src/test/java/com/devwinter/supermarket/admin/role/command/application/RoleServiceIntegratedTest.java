@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Transactional
-@ActiveProfiles({"testMemoryDB"})
+@ActiveProfiles({"test"})
 public class RoleServiceIntegratedTest {
 
     @Autowired
