@@ -1,7 +1,6 @@
 package com.devwinter.supermarket.member.command.application;
 
-import com.devwinter.supermarket.member.command.application.exception.MemberErrorCode;
-import com.devwinter.supermarket.member.command.application.exception.MemberException;
+import com.devwinter.supermarket.member.command.exception.MemberException;
 import com.devwinter.supermarket.member.command.application.request.MemberCreate;
 import com.devwinter.supermarket.member.command.application.request.RegionCreate;
 import com.devwinter.supermarket.member.command.domain.*;
@@ -18,8 +17,7 @@ import javax.persistence.EntityManager;
 
 import java.util.UUID;
 
-import static com.devwinter.supermarket.member.command.application.exception.MemberErrorCode.MEMBER_NOT_FOUND;
-import static org.assertj.core.api.Assertions.*;
+import static com.devwinter.supermarket.member.command.exception.MemberErrorCode.MEMBER_NOT_FOUND;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -279,7 +277,7 @@ public class MemberServiceIntegratedTest {
         assertThat(member.getAddress().getDetail()).isEqualTo("상세");
         assertThat(member.getAddress().getZipcode()).isEqualTo("123");
         assertThat(member.getGender()).isEqualTo(Gender.MAN);
-        assertThat(member.isDeleteYn()).isTrue();
+        assertThat(member.getDeleteYn()).isTrue();
     }
 
     @Test

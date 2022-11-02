@@ -1,6 +1,6 @@
-package com.devwinter.supermarket.member.command.application.exception;
+package com.devwinter.supermarket.member.command.exception;
 
-import com.devwinter.supermarket.common.exception.SuperMarketException;
+import com.devwinter.supermarket.common.SuperMarketException;
 
 public class MemberException extends SuperMarketException {
 

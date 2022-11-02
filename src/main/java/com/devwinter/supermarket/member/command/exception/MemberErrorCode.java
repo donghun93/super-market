@@ -1,4 +1,4 @@
-package com.devwinter.supermarket.member.command.application.exception;
+package com.devwinter.supermarket.member.command.exception;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
