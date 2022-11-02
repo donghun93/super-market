@@ -44,8 +44,8 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional
-    public void changeRole(RoleUpdate roleUpdate) {
-        roleDuplicateValid(roleUpdate.getName(), roleUpdate.getDesc());
+    public void updateRole(RoleUpdate roleUpdate) {
+        roleDuplicateValid(roleUpdate.getId(), roleUpdate.getName(), roleUpdate.getDesc());
         Role role = roleRepository.findById(roleUpdate.getId())
                 .orElseThrow(() -> new RoleException(ROLE_NOT_FOUND));
 
@@ -54,6 +54,13 @@ public class RoleServiceImpl implements RoleService {
 
     private void roleDuplicateValid(String roleName, String roleDesc) {
         roleRepository.findByNameOrDesc(roleName, roleDesc)
+                .ifPresent(r -> {
+                    throw new RoleException(ROLE_DUPLICATE_NAME);
+                });
+    }
+
+    private void roleDuplicateValid(Long id, String roleName, String roleDesc) {
+        roleRepository.findByIdIsNotAndNameOrDesc(id, roleName, roleDesc)
                 .ifPresent(r -> {
                     throw new RoleException(ROLE_DUPLICATE_NAME);
                 });

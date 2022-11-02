@@ -6,5 +6,5 @@ import com.devwinter.supermarket.admin.role.command.application.request.RoleUpda
 public interface RoleService {
     Long createRole(RoleCreate roleCreate);
     void deleteRole(Long roleId);
-    void changeRole(RoleUpdate roleUpdate);
+    void updateRole(RoleUpdate roleUpdate);
 }
