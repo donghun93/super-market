@@ -1,6 +1,6 @@
 package com.devwinter.supermarket.member.command.application;
 
-import com.devwinter.supermarket.member.command.application.exception.MemberException;
+import com.devwinter.supermarket.member.command.exception.MemberException;
 import com.devwinter.supermarket.member.command.application.impl.MemberServiceImpl;
 import com.devwinter.supermarket.member.command.application.request.MemberCreate;
 import com.devwinter.supermarket.member.command.application.request.RegionCreate;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.devwinter.supermarket.member.command.application.exception.MemberErrorCode.*;
+import static com.devwinter.supermarket.member.command.exception.MemberErrorCode.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -435,7 +435,7 @@ class MemberServiceTest {
         // then
         verify(memberRepository, times(1)).findById(anyLong());
         verify(mockMember, times(1)).deleteMember();
-        assertThat(mockMember.isDeleteYn()).isTrue();
+        assertThat(mockMember.getDeleteYn()).isTrue();
     }
     
     @Test
