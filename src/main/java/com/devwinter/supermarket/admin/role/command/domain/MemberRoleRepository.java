@@ -12,5 +12,6 @@ public interface MemberRoleRepository extends JpaRepository<MemberRole, Long> {
     @Query("select mr.role.name from MemberRole mr join mr.role where mr.member = :member")
     Set<String> findByUserRolesByMember(@Param("member") Member member);
 
-    Long countByRole(Role role);
+    @Query("select count(mr) from MemberRole mr where mr.role = :role")
+    Long countByRole(@Param("role") Role role);
 }
