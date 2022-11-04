@@ -2,7 +2,7 @@ package com.devwinter.supermarket.config.security.service;
 
 import com.devwinter.supermarket.admin.role.command.domain.MemberRoleRepository;
 import com.devwinter.supermarket.config.security.context.MemberContext;
-import com.devwinter.supermarket.member.command.domain.Email;
+import com.devwinter.supermarket.member.command.domain.MemberEmail;
 import com.devwinter.supermarket.member.command.domain.Member;
 import com.devwinter.supermarket.member.command.domain.MemberRepository;
 import com.devwinter.supermarket.member.command.exception.MemberException;
@@ -30,7 +30,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Member member = memberRepository.findByEmail(new Email(username))
+        Member member = memberRepository.findByEmail(new MemberEmail(username))
                 .orElseThrow(() -> new MemberException(MEMBER_NOT_FOUND));
 
         Set<String> userRoles = memberRoleRepository.findByUserRolesByMember(member);

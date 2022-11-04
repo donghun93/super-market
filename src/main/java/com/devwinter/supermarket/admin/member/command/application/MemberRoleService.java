@@ -38,11 +38,4 @@ public class MemberRoleService {
                 .orElseThrow(() -> new RoleException(MEMBER_ROLE_NOT_MATCHED));
         memberRole.changeRole(role);
     }
-
-    @Transactional
-    public void memberBlock(Long memberId) {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new MemberException(MEMBER_NOT_FOUND));
-        member.changeBlock();
-    }
 }
