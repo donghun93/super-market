@@ -1,16 +1,22 @@
 package com.devwinter.supermarket.member.command.application;
 
+import com.devwinter.supermarket.admin.role.command.application.RoleService;
 import com.devwinter.supermarket.member.command.exception.MemberException;
 import com.devwinter.supermarket.member.command.application.request.MemberCreate;
 import com.devwinter.supermarket.member.command.application.request.RegionCreate;
 import com.devwinter.supermarket.member.command.domain.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.event.annotation.BeforeTestClass;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -22,6 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
+@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 @Transactional
 @ActiveProfiles({"test"})
 public class MemberServiceIntegratedTest {
@@ -65,7 +72,9 @@ public class MemberServiceIntegratedTest {
                 .email(UUID.randomUUID().toString().substring(0,10))
                 .password("12345")
                 .name("테스터")
-                .address(new Address("주소1", "상세", "123"))
+                .address("주소1")
+                .detail("상세")
+                .zipcode("123")
                 .gender(Gender.MAN)
                 .build();
     }

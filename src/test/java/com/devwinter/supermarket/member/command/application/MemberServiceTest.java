@@ -1,5 +1,6 @@
 package com.devwinter.supermarket.member.command.application;
 
+import com.devwinter.supermarket.admin.role.command.application.RoleService;
 import com.devwinter.supermarket.member.command.exception.MemberException;
 import com.devwinter.supermarket.member.command.application.impl.MemberServiceImpl;
 import com.devwinter.supermarket.member.command.application.request.MemberCreate;
@@ -33,6 +34,9 @@ class MemberServiceTest {
     private MemberRepository memberRepository;
 
     @Mock
+    private RoleService roleService;
+
+    @Mock
     private PasswordEncoder passwordEncoder;
 
     @InjectMocks
@@ -46,7 +50,9 @@ class MemberServiceTest {
                 .email("test@gmail.com")
                 .password("12345")
                 .name("테스터")
-                .address(new Address("서울시", "상세", "123"))
+                .address("서울시")
+                .detail("상세")
+                .zipcode("123")
                 .gender(Gender.MAN)
                 .build();
 
@@ -70,7 +76,9 @@ class MemberServiceTest {
                 .email("test@gmail.com")
                 .password("12345")
                 .name("테스터")
-                .address(new Address("서울시", "마포구", "123"))
+                .address("서울시")
+                .detail("마포구")
+                .zipcode("123")
                 .gender(Gender.MAN)
                 .build();
 
@@ -91,6 +99,7 @@ class MemberServiceTest {
         verify(passwordEncoder, times(1)).encode(anyString());
         verify(mockMemberCreate, times(1)).toEntity(anyString());
         verify(memberRepository, times(1)).save(captor.capture());
+        verify(roleService, times(1)).setMemberDefaultUserRole(any());
         assertThat(captor.getValue().getEmail().getValue()).isEqualTo("test@gmail.com");
         assertThat(captor.getValue().getPass().getValue()).isEqualTo("54321");
         assertThat(captor.getValue().getName()).isEqualTo("테스터");
