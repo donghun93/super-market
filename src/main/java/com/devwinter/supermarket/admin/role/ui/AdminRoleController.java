@@ -17,9 +17,9 @@ import javax.validation.Valid;
 
 @Slf4j
 @Controller
-@RequestMapping("/admin/roles")
+@RequestMapping("/admin/authorize/roles")
 @RequiredArgsConstructor
-public class RoleController {
+public class AdminRoleController {
 
     private final RoleService roleService;
     private final RoleQueryService roleQueryService;
@@ -27,46 +27,46 @@ public class RoleController {
     @GetMapping
     public String getRoles(Pageable pageable, Model model) {
         model.addAttribute("items", roleQueryService.getRoleList(pageable));
-        return "admin/role/manage";
+        return "admin/authorize/role/manage";
     }
 
     @GetMapping("/register")
     public String createRole(Model model) {
         model.addAttribute("roleCreate", new RoleCreate());
-        return "admin/role/register";
+        return "admin/authorize/role/register";
     }
 
     @PostMapping("/register")
     public String createRoleSubmit(@Valid RoleCreate roleCreate, BindingResult result) {
 
         if(result.hasErrors()) {
-            return "admin/role/register";
+            return "admin/authorize/role/register";
         }
         roleService.createRole(roleCreate);
-        return "redirect:/admin/roles";
+        return "redirect:/admin/authorize/roles";
     }
 
     @GetMapping("/{id}")
     public String getRoleDetail(@PathVariable Long id, Model model) {
 
         model.addAttribute("roleUpdate", roleQueryService.getRoleDetail(id));
-        return "admin/role/detail";
+        return "admin/authorize/role/detail";
     }
 
     @DeleteMapping("/{id}")
     public String deleteRole(@PathVariable Long id) {
         roleService.deleteRole(id);
-        return "redirect:/admin/roles";
+        return "redirect:/admin/authorize/roles";
     }
 
     @PostMapping("/update")
     public String updateRole(@ModelAttribute @Valid RoleUpdate roleUpdate, BindingResult result) {
 
         if(result.hasErrors()) {
-            return "admin/role/detail";
+            return "admin/authorize/role/detail";
         }
 
         roleService.updateRole(roleUpdate);
-        return "redirect:/admin/roles";
+        return "redirect:/admin/authorize/roles";
     }
 }

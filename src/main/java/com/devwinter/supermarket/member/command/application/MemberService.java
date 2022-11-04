@@ -10,4 +10,5 @@ public interface MemberService {
     void changeLeadRegion(Long memberId, int regionIdx);
     void deleteMember(Long memberId);
     void deleteRegion(Long memberId, int regionIdx);
+    void memberBlock(Long memberId);
 }

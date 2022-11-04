@@ -7,12 +7,13 @@ import com.devwinter.supermarket.admin.role.command.domain.MemberRoleRepository;
 import com.devwinter.supermarket.admin.role.command.domain.Role;
 import com.devwinter.supermarket.admin.role.command.domain.RoleRepository;
 import com.devwinter.supermarket.admin.role.command.exception.RoleException;
-import com.devwinter.supermarket.member.command.domain.Email;
+import com.devwinter.supermarket.member.command.domain.MemberEmail;
 import com.devwinter.supermarket.member.command.domain.Member;
 import com.devwinter.supermarket.member.command.domain.MemberRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Transactional
-@ActiveProfiles({"test"})
+@ActiveProfiles({"testMemoryDB"})
 public class RoleServiceIntegratedTest {
 
     @Autowired
@@ -142,7 +143,7 @@ public class RoleServiceIntegratedTest {
         Long roleId = roleService.createRole(parent);
 
         Member member = Member.builder()
-                .email(new Email("test"))
+                .email(new MemberEmail("test"))
                 .build();
 
         memberRepository.save(member);
