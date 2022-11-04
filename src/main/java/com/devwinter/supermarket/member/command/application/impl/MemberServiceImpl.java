@@ -1,10 +1,12 @@
 package com.devwinter.supermarket.member.command.application.impl;
 
+import com.devwinter.supermarket.admin.role.command.application.RoleService;
+import com.devwinter.supermarket.admin.role.command.domain.MemberRoleRepository;
 import com.devwinter.supermarket.member.command.application.MemberService;
 import com.devwinter.supermarket.member.command.exception.MemberException;
 import com.devwinter.supermarket.member.command.application.request.MemberCreate;
 import com.devwinter.supermarket.member.command.application.request.RegionCreate;
-import com.devwinter.supermarket.member.command.domain.Email;
+import com.devwinter.supermarket.member.command.domain.MemberEmail;
 import com.devwinter.supermarket.member.command.domain.Member;
 import com.devwinter.supermarket.member.command.domain.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
+    private final RoleService roleService;
 
     @Override
     @Transactional
@@ -29,6 +32,7 @@ public class MemberServiceImpl implements MemberService {
         memberDuplicateValid(memberCreate.getEmail());
         Member member = memberCreate.toEntity(passwordEncoder.encode(memberCreate.getPassword()));
         memberRepository.save(member);
+        roleService.setMemberDefaultUserRole(member);
         return member.getId();
     }
 
@@ -62,6 +66,14 @@ public class MemberServiceImpl implements MemberService {
         getMember(memberId).deleteRegion(regionIdx);
     }
 
+    @Override
+    @Transactional
+    public void memberBlock(Long memberId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new MemberException(MEMBER_NOT_FOUND));
+        member.changeBlock();
+    }
+
     private Member getMemberWithRegion(Long memberId) {
         return memberRepository.findWithRegionById(memberId)
                 .orElseThrow(() -> new MemberException(MEMBER_NOT_FOUND));
@@ -73,7 +85,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     private void memberDuplicateValid(String email) {
-        memberRepository.findByEmail(new Email(email))
+        memberRepository.findByEmail(new MemberEmail(email))
                 .ifPresent(m -> {
                     throw new MemberException(MEMBER_DUPLICATE_ERROR);
                 });
