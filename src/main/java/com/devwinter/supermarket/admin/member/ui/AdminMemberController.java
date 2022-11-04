@@ -5,6 +5,7 @@ import com.devwinter.supermarket.admin.member.command.request.MemberRoleStatus;
 import com.devwinter.supermarket.admin.member.query.application.AdminMemberQueryService;
 import com.devwinter.supermarket.admin.member.query.response.AdminMemberDetailResponse;
 import com.devwinter.supermarket.admin.role.command.domain.Role;
+import com.devwinter.supermarket.member.command.application.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +21,7 @@ public class AdminMemberController {
 
     private final AdminMemberQueryService adminMemberQueryService;
     private final MemberRoleService memberRoleService;
+    private final MemberService memberService;
 
     @GetMapping
     public String getMemberList(Pageable pageable, Model model) {
@@ -42,7 +44,7 @@ public class AdminMemberController {
 
     @GetMapping("/block/{id}")
     public String memberBlock(@PathVariable("id") Long memberId) {
-        memberRoleService.memberBlock(memberId);
+        memberService.memberBlock(memberId);
         return "redirect:/admin/members";
     }
 }
