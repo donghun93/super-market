@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -22,7 +23,7 @@ public class Member extends BaseEntity {
     private Long id;
 
     @Embedded
-    private Email email;
+    private MemberEmail email;
 
     @Embedded
     private Password pass;
@@ -39,6 +40,8 @@ public class Member extends BaseEntity {
     private MannerPoint mannerPoint;
 
     private Boolean deleteYn;
+    private Boolean blockYn;
+    private LocalDateTime blockDate;
     private LocalDateTime deleteDate;
 
     @ElementCollection(fetch = FetchType.LAZY)
@@ -49,7 +52,7 @@ public class Member extends BaseEntity {
 
     public static final int MAX_REGION_SIZE = 2;
     @Builder
-    private Member(Email email, Password pass, String name, Address address, Gender gender) {
+    private Member(MemberEmail email, Password pass, String name, Address address, Gender gender) {
         this.email = email;
         this.pass = pass;
         this.name = name;
@@ -57,6 +60,7 @@ public class Member extends BaseEntity {
         this.gender = gender;
         this.mannerPoint = new MannerPoint(0);
         this.deleteYn = false;
+        this.blockYn = false;
     }
 
     public void deleteMember() {
@@ -110,4 +114,15 @@ public class Member extends BaseEntity {
         Region region = findRegion(regionIdx);
         getRegions().remove(region);
     }
+
+    public void changeBlock() {
+        if(!this.blockYn) {
+            this.blockYn = true;
+            this.blockDate = LocalDateTime.now();
+        } else {
+            this.blockYn = false;
+            this.blockDate = null;
+        }
+    }
+
 }

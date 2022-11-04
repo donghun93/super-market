@@ -10,12 +10,12 @@ import javax.persistence.Embeddable;
 @Getter
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Email {
+public class MemberEmail {
 
     @Column(name = "email")
     private String value;
 
-    public Email(String value) {
+    public MemberEmail(String value) {
         this.value = value;
     }
 }

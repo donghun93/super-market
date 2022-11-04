@@ -3,7 +3,10 @@ package com.devwinter.supermarket.admin.role.command.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
@@ -12,6 +15,7 @@ import java.util.Objects;
 @Getter
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Access(AccessType.FIELD)
 public class RoleId implements Serializable {
 
     @Column(name = "role_id")
