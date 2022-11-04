@@ -1,11 +1,8 @@
-package com.devwinter.supermarket.admin.role.query.dao;
+package com.devwinter.supermarket.admin.role.query.repository;
 
-import com.devwinter.supermarket.admin.role.command.domain.QRole;
-import com.devwinter.supermarket.admin.role.command.domain.Role;
 import com.devwinter.supermarket.admin.role.query.response.RoleDetailItemResponse;
 import com.devwinter.supermarket.admin.role.query.response.RoleListItemResponse;
 import com.querydsl.core.types.Projections;
-import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
