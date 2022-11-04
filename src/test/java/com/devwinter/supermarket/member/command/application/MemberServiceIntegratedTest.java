@@ -1,13 +1,13 @@
 package com.devwinter.supermarket.member.command.application;
 
 import com.devwinter.supermarket.admin.role.command.application.RoleService;
+import com.devwinter.supermarket.admin.role.command.domain.Role;
+import com.devwinter.supermarket.admin.role.command.domain.RoleRepository;
 import com.devwinter.supermarket.member.command.exception.MemberException;
 import com.devwinter.supermarket.member.command.application.request.MemberCreate;
 import com.devwinter.supermarket.member.command.application.request.RegionCreate;
 import com.devwinter.supermarket.member.command.domain.*;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -28,9 +28,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 @Transactional
-@ActiveProfiles({"test"})
+@ActiveProfiles({"testMemoryDB"})
 public class MemberServiceIntegratedTest {
 
     @Autowired
@@ -40,10 +39,36 @@ public class MemberServiceIntegratedTest {
     private MemberRepository memberRepository;
 
     @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
     private EntityManager em;
+
+    @BeforeEach
+    void before() {
+        roleRepository.save(Role.builder()
+                .name("ROLE_ADMIN")
+                .desc("관리자")
+                .build());
+
+        roleRepository.save(Role.builder()
+                .name("ROLE_SYS")
+                .desc("시스템 관리자")
+                .build());
+
+        roleRepository.save(Role.builder()
+                .name("ROLE_USER")
+                .desc("사용자")
+                .build());
+    }
+
+    @AfterEach
+    void after() {
+        roleRepository.deleteAll();
+    }
 
 
     @Test
@@ -69,7 +94,7 @@ public class MemberServiceIntegratedTest {
 
     private static MemberCreate getMemberCreate() {
         return MemberCreate.builder()
-                .email(UUID.randomUUID().toString().substring(0,10))
+                .email(UUID.randomUUID().toString().substring(0, 10))
                 .password("12345")
                 .name("테스터")
                 .address("주소1")
@@ -134,7 +159,7 @@ public class MemberServiceIntegratedTest {
         assertThat(member.getRegions().get(0).getLocation().getLongitude()).isEqualTo(128.553);
         assertThat(member.getRegions().get(0).getRange()).isEqualTo(RegionRange.NORMAL);
     }
-    
+
     @Test
     @DisplayName("동네 인증 테스트")
     void authRegionMemberTest() {
@@ -165,7 +190,6 @@ public class MemberServiceIntegratedTest {
 
     @Test
     @DisplayName("동네 등록이 여러개일 경우 하나만 인증 테스트")
-    @Rollback(false)
     void authRegionMemberTest2() {
         // given
         MemberCreate memberCreate = getMemberCreate();
@@ -265,7 +289,7 @@ public class MemberServiceIntegratedTest {
         assertThat(member.getRegions().get(0).isLeadStatus()).isFalse();
         assertThat(member.getRegions().get(1).isLeadStatus()).isTrue();
     }
-    
+
     @Test
     @DisplayName("회원 삭제 테스트")
     void memberDeleteTest() {

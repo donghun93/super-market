@@ -20,6 +20,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+@Profile("local")
 public class InitDataRunner implements ApplicationRunner {
 
     private final MemberRepository memberRepository;
@@ -45,20 +46,13 @@ public class InitDataRunner implements ApplicationRunner {
 //                    .build());
 //        }
 
-        try{
-            Role role = roles.stream().filter(r -> r.getName().equals("ROLE_ADMIN")).findFirst().get();
-            //.orElseThrow(() -> new IllegalStateException("관리자 권한이 없습니다."));
+        Role role = roles.stream().filter(r -> r.getName().equals("ROLE_ADMIN"))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("관리자 권한이 없습니다."));
 
-            if(role != null) {
-                memberRoleRepository.save(MemberRole.builder()
-                        .member(admin)
-                        .role(role)
-                        .build());
-            }
-        } catch (Exception e) {
-
-        }
-
-
+        memberRoleRepository.save(MemberRole.builder()
+                .member(admin)
+                .role(role)
+                .build());
     }
 }
